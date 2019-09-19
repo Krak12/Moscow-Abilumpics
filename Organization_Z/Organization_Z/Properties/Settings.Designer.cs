@@ -26,8 +26,7 @@ namespace Organization_Z.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-P66TBKB\\SQLEXPRESS;Initial Catalog=Organization;Integrated Se" +
-            "curity=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GLEB;Initial Catalog=Organization;Integrated Security=True")]
         public string dbConnectionString {
             get {
                 return ((string)(this["dbConnectionString"]));

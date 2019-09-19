@@ -112,6 +112,7 @@
             this.checkBox1.TabIndex = 7;
             this.checkBox1.Text = "Показать пароль";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -153,6 +154,7 @@
             this.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
             this.Name = "Main";
             this.Text = "Авторизация";
+            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

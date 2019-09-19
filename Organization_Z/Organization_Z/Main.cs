@@ -16,5 +16,12 @@ namespace Organization_Z
         {
             InitializeComponent();
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            var userTA = new dbDataSetTableAdapters.WorkersTableAdapter();
+            var users = userTA.GetDataByLoginAndPass(textBox1.Text, textBox2.Text);
+
+        }
     }
 }

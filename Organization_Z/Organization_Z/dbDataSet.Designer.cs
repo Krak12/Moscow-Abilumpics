@@ -743,6 +743,8 @@ namespace Organization_Z {
             
             private global::System.Data.DataColumn columnEndDate;
             
+            private global::System.Data.DataColumn columnDescrube;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public OrdersDataTable() {
@@ -818,6 +820,14 @@ namespace Organization_Z {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DescrubeColumn {
+                get {
+                    return this.columnDescrube;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -853,14 +863,15 @@ namespace Organization_Z {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public OrdersRow AddOrdersRow(WorkersRow parentWorkersRowByFK_Orders_Workers, TypeServicesRow parentTypeServicesRowByFK_Orders_TypeServices, System.DateTime CreateDate, System.DateTime EndDate) {
+            public OrdersRow AddOrdersRow(WorkersRow parentWorkersRowByFK_Orders_Workers, TypeServicesRow parentTypeServicesRowByFK_Orders_TypeServices, System.DateTime CreateDate, System.DateTime EndDate, string Descrube) {
                 OrdersRow rowOrdersRow = ((OrdersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         null,
                         CreateDate,
-                        EndDate};
+                        EndDate,
+                        Descrube};
                 if ((parentWorkersRowByFK_Orders_Workers != null)) {
                     columnValuesArray[1] = parentWorkersRowByFK_Orders_Workers[0];
                 }
@@ -901,6 +912,7 @@ namespace Organization_Z {
                 this.columnTypeService = base.Columns["TypeService"];
                 this.columnCreateDate = base.Columns["CreateDate"];
                 this.columnEndDate = base.Columns["EndDate"];
+                this.columnDescrube = base.Columns["Descrube"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -916,6 +928,8 @@ namespace Organization_Z {
                 base.Columns.Add(this.columnCreateDate);
                 this.columnEndDate = new global::System.Data.DataColumn("EndDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEndDate);
+                this.columnDescrube = new global::System.Data.DataColumn("Descrube", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescrube);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -927,6 +941,7 @@ namespace Organization_Z {
                 this.columnCreator.AllowDBNull = false;
                 this.columnTypeService.AllowDBNull = false;
                 this.columnCreateDate.AllowDBNull = false;
+                this.columnDescrube.MaxLength = 4000;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2136,6 +2151,22 @@ namespace Organization_Z {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Descrube {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrders.DescrubeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Descrube\' в таблице \'Orders\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrders.DescrubeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public TypeServicesRow TypeServicesRow {
                 get {
                     return ((TypeServicesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Orders_TypeServices"])));
@@ -2166,6 +2197,18 @@ namespace Organization_Z {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetEndDateNull() {
                 this[this.tableOrders.EndDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDescrubeNull() {
+                return this.IsNull(this.tableOrders.DescrubeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDescrubeNull() {
+                this[this.tableOrders.DescrubeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3024,10 +3067,11 @@ namespace Organization_Z.dbDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("TypeService", "TypeService");
             tableMapping.ColumnMappings.Add("CreateDate", "CreateDate");
             tableMapping.ColumnMappings.Add("EndDate", "EndDate");
+            tableMapping.ColumnMappings.Add("Descrube", "Descrube");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Orders] WHERE (([ID] = @Original_ID) AND ([Creator] = @Original_Creator) AND ([TypeService] = @Original_TypeService) AND ([CreateDate] = @Original_CreateDate) AND ((@IsNull_EndDate = 1 AND [EndDate] IS NULL) OR ([EndDate] = @Original_EndDate)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Orders] WHERE (([ID] = @Original_ID) AND ([Creator] = @Original_Creator) AND ([TypeService] = @Original_TypeService) AND ([CreateDate] = @Original_CreateDate) AND ((@IsNull_EndDate = 1 AND [EndDate] IS NULL) OR ([EndDate] = @Original_EndDate)) AND ((@IsNull_Descrube = 1 AND [Descrube] IS NULL) OR ([Descrube] = @Original_Descrube)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Creator", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Creator", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -3035,31 +3079,36 @@ namespace Organization_Z.dbDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreateDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EndDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EndDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Descrube", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descrube", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Descrube", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descrube", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Orders] ([Creator], [TypeService], [CreateDate], [EndDate]) VA" +
-                "LUES (@Creator, @TypeService, @CreateDate, @EndDate);\r\nSELECT ID, Creator, TypeS" +
-                "ervice, CreateDate, EndDate FROM Orders WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Orders] ([Creator], [TypeService], [CreateDate], [EndDate], [Descrube]) VALUES (@Creator, @TypeService, @CreateDate, @EndDate, @Descrube);
+SELECT ID, Creator, TypeService, CreateDate, EndDate, Descrube FROM Orders WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Creator", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Creator", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeService", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeService", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EndDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descrube", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descrube", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Orders] SET [Creator] = @Creator, [TypeService] = @TypeService, [CreateDate] = @CreateDate, [EndDate] = @EndDate WHERE (([ID] = @Original_ID) AND ([Creator] = @Original_Creator) AND ([TypeService] = @Original_TypeService) AND ([CreateDate] = @Original_CreateDate) AND ((@IsNull_EndDate = 1 AND [EndDate] IS NULL) OR ([EndDate] = @Original_EndDate)));
-SELECT ID, Creator, TypeService, CreateDate, EndDate FROM Orders WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Orders] SET [Creator] = @Creator, [TypeService] = @TypeService, [CreateDate] = @CreateDate, [EndDate] = @EndDate, [Descrube] = @Descrube WHERE (([ID] = @Original_ID) AND ([Creator] = @Original_Creator) AND ([TypeService] = @Original_TypeService) AND ([CreateDate] = @Original_CreateDate) AND ((@IsNull_EndDate = 1 AND [EndDate] IS NULL) OR ([EndDate] = @Original_EndDate)) AND ((@IsNull_Descrube = 1 AND [Descrube] IS NULL) OR ([Descrube] = @Original_Descrube)));
+SELECT ID, Creator, TypeService, CreateDate, EndDate, Descrube FROM Orders WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Creator", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Creator", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeService", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeService", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EndDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descrube", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descrube", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Creator", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Creator", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeService", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeService", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreateDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EndDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EndDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Descrube", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descrube", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Descrube", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descrube", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -3076,7 +3125,7 @@ SELECT ID, Creator, TypeService, CreateDate, EndDate FROM Orders WHERE (ID = @ID
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, Creator, TypeService, CreateDate, EndDate FROM dbo.Orders";
+            this._commandCollection[0].CommandText = "SELECT ID, Creator, TypeService, CreateDate, EndDate, Descrube FROM dbo.Orders";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3137,7 +3186,7 @@ SELECT ID, Creator, TypeService, CreateDate, EndDate FROM Orders WHERE (ID = @ID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_ID, int Original_Creator, int Original_TypeService, System.DateTime Original_CreateDate, global::System.Nullable<global::System.DateTime> Original_EndDate) {
+        public virtual int Delete(long Original_ID, int Original_Creator, int Original_TypeService, System.DateTime Original_CreateDate, global::System.Nullable<global::System.DateTime> Original_EndDate, string Original_Descrube) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_Creator));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_TypeService));
@@ -3149,6 +3198,14 @@ SELECT ID, Creator, TypeService, CreateDate, EndDate FROM Orders WHERE (ID = @ID
             else {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Descrube == null)) {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_Descrube));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3170,7 +3227,7 @@ SELECT ID, Creator, TypeService, CreateDate, EndDate FROM Orders WHERE (ID = @ID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Creator, int TypeService, System.DateTime CreateDate, global::System.Nullable<global::System.DateTime> EndDate) {
+        public virtual int Insert(int Creator, int TypeService, System.DateTime CreateDate, global::System.Nullable<global::System.DateTime> EndDate, string Descrube) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Creator));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(TypeService));
             this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(CreateDate));
@@ -3179,6 +3236,12 @@ SELECT ID, Creator, TypeService, CreateDate, EndDate FROM Orders WHERE (ID = @ID
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Descrube == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Descrube));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3200,7 +3263,7 @@ SELECT ID, Creator, TypeService, CreateDate, EndDate FROM Orders WHERE (ID = @ID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Creator, int TypeService, System.DateTime CreateDate, global::System.Nullable<global::System.DateTime> EndDate, long Original_ID, int Original_Creator, int Original_TypeService, System.DateTime Original_CreateDate, global::System.Nullable<global::System.DateTime> Original_EndDate, long ID) {
+        public virtual int Update(int Creator, int TypeService, System.DateTime CreateDate, global::System.Nullable<global::System.DateTime> EndDate, string Descrube, long Original_ID, int Original_Creator, int Original_TypeService, System.DateTime Original_CreateDate, global::System.Nullable<global::System.DateTime> Original_EndDate, string Original_Descrube, long ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Creator));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(TypeService));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(CreateDate));
@@ -3210,19 +3273,33 @@ SELECT ID, Creator, TypeService, CreateDate, EndDate FROM Orders WHERE (ID = @ID
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((long)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Creator));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_TypeService));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_CreateDate));
-            if ((Original_EndDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_EndDate.Value));
+            if ((Descrube == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Descrube));
             }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((long)(ID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((long)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Creator));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_TypeService));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(Original_CreateDate));
+            if ((Original_EndDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_EndDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Descrube == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_Descrube));
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((long)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3243,8 +3320,8 @@ SELECT ID, Creator, TypeService, CreateDate, EndDate FROM Orders WHERE (ID = @ID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Creator, int TypeService, System.DateTime CreateDate, global::System.Nullable<global::System.DateTime> EndDate, long Original_ID, int Original_Creator, int Original_TypeService, System.DateTime Original_CreateDate, global::System.Nullable<global::System.DateTime> Original_EndDate) {
-            return this.Update(Creator, TypeService, CreateDate, EndDate, Original_ID, Original_Creator, Original_TypeService, Original_CreateDate, Original_EndDate, Original_ID);
+        public virtual int Update(int Creator, int TypeService, System.DateTime CreateDate, global::System.Nullable<global::System.DateTime> EndDate, string Descrube, long Original_ID, int Original_Creator, int Original_TypeService, System.DateTime Original_CreateDate, global::System.Nullable<global::System.DateTime> Original_EndDate, string Original_Descrube) {
+            return this.Update(Creator, TypeService, CreateDate, EndDate, Descrube, Original_ID, Original_Creator, Original_TypeService, Original_CreateDate, Original_EndDate, Original_Descrube, Original_ID);
         }
     }
     
@@ -4074,12 +4151,26 @@ SELECT ID, TypeAcc, Login, Password, Surname, Name, Patronymic, Phone, Email FRO
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, TypeAcc, Login, Password, Surname, Name, Patronymic, Phone, Email FROM" +
                 " dbo.Workers";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        ID, TypeAcc, Login, Password, Surname, Name, Patronymic, Phone, Ema" +
+                "il\r\nFROM            Workers\r\nWHERE        (Login = @login)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@login", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Login", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        ID, TypeAcc, Login, Password, Surname, Name, Patronymic, Phone, Ema" +
+                "il\r\nFROM            Workers\r\nWHERE        (Login = @login) AND (Password = @pass" +
+                ")";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@login", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Login", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pass", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4101,6 +4192,46 @@ SELECT ID, TypeAcc, Login, Password, Surname, Name, Patronymic, Phone, Email FRO
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual dbDataSet.WorkersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            dbDataSet.WorkersDataTable dataTable = new dbDataSet.WorkersDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual dbDataSet.WorkersDataTable GetDataByLogin(string login) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((login == null)) {
+                throw new global::System.ArgumentNullException("login");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(login));
+            }
+            dbDataSet.WorkersDataTable dataTable = new dbDataSet.WorkersDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual dbDataSet.WorkersDataTable GetDataByLoginAndPass(string login, string pass) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((login == null)) {
+                throw new global::System.ArgumentNullException("login");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(login));
+            }
+            if ((pass == null)) {
+                throw new global::System.ArgumentNullException("pass");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(pass));
+            }
             dbDataSet.WorkersDataTable dataTable = new dbDataSet.WorkersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

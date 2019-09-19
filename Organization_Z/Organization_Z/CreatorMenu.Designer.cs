@@ -29,37 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.dbDataSet = new Organization_Z.dbDataSet();
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ordersTableAdapter = new Organization_Z.dbDataSetTableAdapters.OrdersTableAdapter();
-            this.tableAdapterManager = new Organization_Z.dbDataSetTableAdapters.TableAdapterManager();
             this.ordersDataGridView = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.MediumBlue;
-            this.pictureBox1.Image = global::Organization_Z.Properties.Resources.Снимок;
-            this.pictureBox1.Location = new System.Drawing.Point(1, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(442, 745);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // button1
             // 
@@ -119,20 +107,6 @@
             this.ordersBindingSource.DataMember = "Orders";
             this.ordersBindingSource.DataSource = this.dbDataSet;
             // 
-            // ordersTableAdapter
-            // 
-            this.ordersTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AssignedOrdersTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.OrdersTableAdapter = this.ordersTableAdapter;
-            this.tableAdapterManager.TypeAccountTableAdapter = null;
-            this.tableAdapterManager.TypeServicesTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = Organization_Z.dbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.WorkersTableAdapter = null;
-            // 
             // ordersDataGridView
             // 
             this.ordersDataGridView.AutoGenerateColumns = false;
@@ -150,15 +124,6 @@
             this.ordersDataGridView.Name = "ordersDataGridView";
             this.ordersDataGridView.Size = new System.Drawing.Size(893, 636);
             this.ordersDataGridView.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(807, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 38);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Мои заявки";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -196,6 +161,25 @@
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.Width = 200;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(807, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(165, 38);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Мои заявки";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.MediumBlue;
+            this.pictureBox1.Image = global::Organization_Z.Properties.Resources.Снимок;
+            this.pictureBox1.Location = new System.Drawing.Point(1, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(442, 745);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // CreatorMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 38F);
@@ -214,10 +198,10 @@
             this.Name = "CreatorMenu";
             this.Text = "Меню сотрудника";
             this.Load += new System.EventHandler(this.CreatorMenu_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,8 +216,6 @@
         private System.Windows.Forms.Button button4;
         private dbDataSet dbDataSet;
         private System.Windows.Forms.BindingSource ordersBindingSource;
-        private dbDataSetTableAdapters.OrdersTableAdapter ordersTableAdapter;
-        private dbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridView ordersDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
